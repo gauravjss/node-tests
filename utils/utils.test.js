@@ -1,25 +1,31 @@
 const expect = require('expect');
 const utils = require('./utils');
 
+// Grouping of Test Cases to make reading easier.
+describe('Utils',()=>{
 
-// Behaviour driven development
-it('should add two numbers',() =>{
-    var res = utils.add(33,11);
-    expect(res).toBe(44).toBeA('number');
+    describe('Add *', ()=>{
+        // Behaviour driven development
+        it('should add two numbers',() =>{
+            var res = utils.add(33,11);
+            expect(res).toBe(44).toBeA('number');
+        });
+
+        // Testing an Asynchronous Method
+        it('should async add 2 numbers', (done) => {
+            utils.asyncAdd(4,3,(sum) =>{
+                expect(sum).toBe(7).toBeAn('number')
+                done();
+            })
+        });
+    });
+
+    it('should square a number', () => {
+        var res = utils.square(5);
+        expect(res).toBe(25).toBeAn('number');
+    });
 });
 
-// Testing an Asynchronous Method
-it('should async add 2 numbers', (done) => {
-    utils.asyncAdd(4,3,(sum) =>{
-        expect(sum).toBe(7).toBeAn('number')
-        done();
-    })
-});
-
-it('should square a number', () => {
-    var res = utils.square(5);
-    expect(res).toBe(25).toBeAn('number');
-});
 
 // Test should verify first and last names are set
 it('should set firstName and lastName', () =>{
@@ -30,7 +36,6 @@ it('should set firstName and lastName', () =>{
         lastName: 'S'
     });
 });
-
 
 /*it('should expect some values', () => {
     //expect(12).toNotBe(12);
@@ -45,6 +50,3 @@ it('should set firstName and lastName', () =>{
         age : 33
     })
 });*/
-
-
-
